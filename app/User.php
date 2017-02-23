@@ -1,7 +1,7 @@
 <?php
 
 namespace App;
-
+use Illuminate\Support\Facades\Log;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
@@ -12,7 +12,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'is_active', 'role_id', 'photo_id'
+        'name', 'email', 'password', 'role_id', 'photo_id', 'is_active',
     ];
 
     /**
@@ -31,6 +31,14 @@ class User extends Authenticatable
     public function photo()
     {
       return $this->belongsTo('App\Photo');
+    }
+
+    public function isAdmin()
+    {
+      if ($this->role->name == 'administrator' && $this->is_active == 1) {
+        return true;
+      }
+      return false;
     }
 
 }
