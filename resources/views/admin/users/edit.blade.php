@@ -38,7 +38,7 @@
           {!! Form::password('password', ['class'=>'form-control']) !!}
         </div>
         <div class="form-group">
-          {!! Form::submit('Create User', ['class'=>'btn btn-primary col-sm-2']) !!}
+          {!! Form::submit('Edit User', ['class'=>'btn btn-primary col-sm-2']) !!}
         </div>
       {!! Form::close() !!}
 
