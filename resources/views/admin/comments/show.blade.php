@@ -1,8 +1,8 @@
 @extends('layouts.admin')
 @section('content')
 
-@if (Session::has('deleted_comment'))
-  <p class="bg-danger">{{session('deleted_comment')}}</p>
+@if (Session::has('deleted_post'))
+  <p class="bg-danger">{{session('deleted_post')}}</p>
 @endif
 
   @if (count($comments) > 0)
@@ -20,7 +20,6 @@
           <th>Updated</th>
           <th></th>
           <th></th>
-          <th></th>
         </tr>
       </thead>
       <tbody>
@@ -33,7 +32,6 @@
               <td>{{$comment->created_at->diffForHumans()}}</td>
               <td>{{$comment->updated_at->diffForHumans()}}</td>
               <td><a href="{{route('home.post', $comment->post->id)}}">View Post</a></td>
-              <td><a href="{{route('admin.comment.replies.show', $comment->id)}}">View Replies</a></td>
               <td>
                   @if ($comment->is_active == 1)
                     {!! Form::open(['method'=>'PATCH', 'action'=>['PostCommentsController@update', $comment->id]]) !!}
